@@ -58,3 +58,77 @@ class Foo#5 (2) {
 }
 
 ```
+
+## Install
+
+Via Composer
+
+    {
+        "require": {
+            "league/di": ">=0.1"
+        }
+    }
+
+
+## Usage
+
+### Automatic Dependency Resolution
+
+The Di Container is able to recursively resolve objects and their dependencies by inspecting the type hints on an object's constructor.
+
+    namespace Foo\Bar;
+
+    class Baz
+    {
+      public function __construct(Qux $qux, Corge $corge)
+      {
+        $this->qux = $qux;
+        $this->corge = $corge;
+      }
+
+      public function setQuux(Quux $quux)
+      {
+        $this->quux = $quux;
+      }
+    }
+
+    $container->resolve('\Foo\Bar\Baz');
+
+### Define Arguments
+
+Alternatively, you can specify what to inject into the class upon instantiation.
+
+#### Define Constructor Args
+
+    $container->bind('\Foo\Bar\Baz')->addArgs(array('\Foo\Bar\Quux', '\Foo\Bar\Corge'));
+
+    $container->resolve('\Foo\Bar\Baz');
+
+#### Define Method Calls & Args
+
+    $container->bind('\Foo\Bar\Baz')->withMethod('setQuux', array('\Foo\Bar\Quux'));
+
+    $container->resolve('\Foo\Bar\Baz');
+
+
+## TODO
+
+- Full Unit Test Coverage
+- Extensive Documentation
+- More Framework Integration
+
+
+## Contributing
+
+Please see [CONTRIBUTING](https://github.com/dongilbert/loep-di/blob/master/CONTRIBUTING.md) for details.
+
+
+## Credits
+
+- [Don Gilbert](https://github.com/dongilbert)
+- [All Contributors](https://github.com/dongilbert/loep-di/contributors)
+
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/php-loep/statsd/blob/master/LICENSE) for more information.
