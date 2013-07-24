@@ -1,8 +1,6 @@
 # League\Di
 
-The League\Di library provides a simple IoC Container for your application. Dependency Injection allows you the developer to control the construction and lifecycle of your objects, rather than leaving that control to the classes themselves. Instead of hard coding a class's dependencies within the class `__construct()` method, you instead provide to a class the dependencies it requires as arguments to its constructor. This helps to decrease hard dependencies and to create loosely coupled code.
-
-An Dependency Injection Container helps you to manage these dependencies in a controlled fashion.
+The League\Di library provides a simple but fast Dependency Injection Container for your application.
 
 ## Install
 
@@ -16,6 +14,16 @@ Via Composer
 
 
 ## Usage
+
+### Get a Container Object
+
+    include 'vendor/autoload.php';
+
+    $container = new League\Di\Container;
+
+### Bind a concrete class to an interface
+
+    $container->bind('\Foo\Bar\BazInterface', '\Foo\Bar\Baz');
 
 ### Automatic Dependency Resolution
 
@@ -39,7 +47,7 @@ The Di Container is able to recursively resolve objects and their dependencies b
 
     $container->resolve('\Foo\Bar\Baz');
 
-### Define Arguments
+### Defining Arguments
 
 Alternatively, you can specify what to inject into the class upon instantiation.
 
@@ -49,7 +57,7 @@ Alternatively, you can specify what to inject into the class upon instantiation.
 
     $container->resolve('\Foo\Bar\Baz');
 
-#### Define Method Calls & Args
+#### Define Methods to Call with Args
 
     $container->bind('\Foo\Bar\Baz')->withMethod('setQuux', array('\Foo\Bar\Quux'));
 
@@ -76,4 +84,4 @@ Please see [CONTRIBUTING](https://github.com/dongilbert/loep-di/blob/master/CONT
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/php-loep/statsd/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/dongilbert/loep-di/blob/master/LICENSE) for more information.
