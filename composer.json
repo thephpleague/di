@@ -1,0 +1,38 @@
+
+{
+    "name"        : "league/di",
+    "type"        : "library",
+    "description" : "Fast Dependency Injection Container for PHP 5.3+",
+    "keywords"    : ["dependency injection", "dic", "ioc"],
+    "homepage"    : "https://github.com/dongilbert/loep-di",
+    "license"     : "MIT",
+
+    "authors" : [{
+        "name"     : "Don Gilbert",
+        "email"    : "don@dongilbert.net",
+        "homepage" : "http://dongilbert.net",
+        "role"     : "Developer"
+    }],
+
+    "support" : {
+        "email"  : "don@dongilbert.net",
+        "issues" : "https://github.com/dongilbert/loep-di/issues",
+        "source" : "https://github.com/dongilbert/loep-di"
+    },
+
+    "require" : {
+        "php" : ">=5.3.0"
+    },
+
+    "autoload" : {
+        "psr-0" : {
+            "League\\Di": "src/"
+        }
+    },
+
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1-dev"
+        }
+    }
+}
