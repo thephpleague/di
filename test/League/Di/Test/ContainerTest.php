@@ -11,7 +11,6 @@
 namespace League\Di\Test;
 
 use League\Di\Container;
-use League\Di\Stub;
 
 /**
  * Container Test class
@@ -20,40 +19,40 @@ use League\Di\Stub;
  */
 class ContainerTest extends \PHPUnit_Framework_TestCase
 {
-	protected $container;
+    protected $container;
 
-	public function setUp()
-	{
-		$this->container = new Container;
-	}
+    public function setUp()
+    {
+        $this->container = new Container;
+    }
 
-	public function testBind()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testBind()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testBuild()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testBuild()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testGetSingleDependency()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testGetSingleDependency()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testGetMultipleDependencies()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testGetMultipleDependencies()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testResolveBound()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testResolveBound()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testResolveNotBound()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testResolveNotBound()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 }

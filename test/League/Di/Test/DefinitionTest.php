@@ -11,7 +11,6 @@
 namespace League\Di\Test;
 
 use League\Di\Definition;
-use League\Di\Stub;
 
 /**
  * Definition Test class
@@ -20,33 +19,33 @@ use League\Di\Stub;
  */
 class DefinitionTest extends \PHPUnit_Framework_TestCase
 {
-	public function testConstruct()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testConstruct()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testInvoke()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testInvoke()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testAddArg()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testAddArg()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testAddArgs()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testAddArgs()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testWithMethod()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testWithMethod()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 
-	public function testCallMethod()
-	{
-		$this->markTestIncomplete('This test has not yet been implemented.');
-	}
+    public function testCallMethod()
+    {
+        $this->markTestIncomplete('This test has not yet been implemented.');
+    }
 }

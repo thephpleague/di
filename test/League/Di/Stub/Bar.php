@@ -17,10 +17,10 @@ namespace League\Di\Stub;
  */
 class Bar implements BarInterface
 {
-	public $qux;
+    public $qux;
 
-	public function __construct(Qux $qux)
-	{
-		$this->qux = $qux;
-	}
+    public function __construct(Qux $qux)
+    {
+        $this->qux = $qux;
+    }
 }

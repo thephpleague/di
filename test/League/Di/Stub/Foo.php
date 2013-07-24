@@ -17,12 +17,12 @@ namespace League\Di\Stub;
  */
 class Foo
 {
-	public $bar;
-	public $baz;
+    public $bar;
+    public $baz;
 
-	public function __construct(BarInterface $bar, BazInterface $baz)
-	{
-		$this->bar = $bar;
-		$this->baz = $baz;
-	}
+    public function __construct(BarInterface $bar, BazInterface $baz)
+    {
+        $this->bar = $bar;
+        $this->baz = $baz;
+    }
 }
