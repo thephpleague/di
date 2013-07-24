@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace League\DI;
+namespace League\Di;
 
 /**
  * Container class
