@@ -4,61 +4,6 @@ The League\Di library provides a simple IoC Container for your application. Depe
 
 An Dependency Injection Container helps you to manage these dependencies in a controlled fashion.
 
-## Automatic Dependency Resolution
-
-The Di Container is able to recursively resolve objects and their dependencies by inspecting the type hints on an object's constructor.
-
-```php
-
-include 'vendor/autoload.php';
-
-class Foo
-{
-    public $bar;
-    public $baz;
-
-    public function __construct(Bar $bar, Baz $baz)
-    {
-        $this->bar = $bar;
-        $this->baz = $baz;
-    }
-}
-
-class Bar
-{
-    public $qux;
-
-    public function __construct(Qux $qux)
-    {
-        $this->qux = $qux;
-    }
-}
-
-class Baz {}
-
-class Qux {}
-
-$container = new League\Di\Container;
-
-var_dump($container->resolve('Foo'));
-```
-Running the above will give you the following result:
-
-```
-class Foo#5 (2) {
-  public $bar =>
-  class Bar#9 (1) {
-    public $qux =>
-    class Qux#13 (0) {
-    }
-  }
-  public $baz =>
-  class Baz#14 (0) {
-  }
-}
-
-```
-
 ## Install
 
 Via Composer
