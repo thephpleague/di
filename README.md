@@ -1,6 +1,6 @@
 # League\Di
 
-The League\Di library provides a simple but fast Dependency Injection Container for your application.
+The League\Di library provides a fast and powerful Dependency Injection Container for your application.
 
 ## Install
 
