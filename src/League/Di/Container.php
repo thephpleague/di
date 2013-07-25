@@ -98,7 +98,7 @@ class Container
                 continue;
             }
 
-            throw new \InvalidArgumentException('Could not resolve ' . $dependency->getName());
+            throw new \InvalidArgumentException('Could not resolve ' . $param->getName());
         }
 
         return $dependencies;

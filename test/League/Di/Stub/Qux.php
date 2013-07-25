@@ -15,4 +15,4 @@ namespace League\Di\Stub;
  *
  * @author  Don Gilbert <don@dongilbert.net>
  */
-class Quz {}
+class Qux {}
