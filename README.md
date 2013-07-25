@@ -76,15 +76,15 @@ Alternatively, you can specify what to inject into the class upon instantiation.
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/dongilbert/loep-di/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/php-loep/di/blob/master/CONTRIBUTING.md) for details.
 
 
 ## Credits
 
 - [Don Gilbert](https://github.com/dongilbert)
-- [All Contributors](https://github.com/dongilbert/loep-di/contributors)
+- [All Contributors](https://github.com/php-loep/di/contributors)
 
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/dongilbert/loep-di/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/php-loep/di/blob/master/LICENSE) for more information.
