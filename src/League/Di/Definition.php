@@ -79,7 +79,7 @@ class Definition
 
             foreach ($this->arguments as $arg) {
                 if (is_string($arg) && (class_exists($arg) || $this->container->bound($arg))) {
-                    $arguments[] = $this->container->build($arg);
+                    $arguments[] = $this->container->resolve($arg);
                     continue;
                 }
 
@@ -97,11 +97,11 @@ class Definition
      *
      * @param string $arg The argument to add. Can be a class name.
      *
-     * @return League\Di\Definition
+     * @return Definition
      */
     public function addArg($arg)
     {
-        $this->arguments[] = $this->container->resolve($arg);
+        $this->arguments[] = $arg;
 
         return $this;
     }
@@ -111,12 +111,12 @@ class Definition
      *
      * @param array $arg An array of arguments.
      *
-     * @return League\Di\Definition
+     * @return Definition
      */
     public function addArgs(array $args)
     {
         foreach ($args as $arg) {
-            $this->arguments[] = $this->container->resolve($arg);
+            $this->arguments[] = $arg;
         }
 
         return $this;
@@ -128,7 +128,7 @@ class Definition
      * @param string $method The method name to call.
      * @param array  $args   Array of arguments to pass to the call.
      *
-     * @return League\Di\Definition
+     * @return Definition
      */
     public function withMethod($method, array $args = array())
     {
@@ -153,7 +153,7 @@ class Definition
                 $arguments = array();
 
                 foreach ($args as $arg) {
-                    if (is_string($arg)) {
+                    if (is_string($arg) && (class_exists($arg) || $this->container->bound($arg))) {
                         $arguments[] = $this->container->resolve($arg);
                         continue;
                     }

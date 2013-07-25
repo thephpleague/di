@@ -12,6 +12,7 @@ namespace League\Di\Test;
 
 use League\Di\Container;
 use League\Di\Definition;
+use League\Di\Stub\Corge;
 
 /**
  * Definition Test class
@@ -78,7 +79,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Tests invoking a class with no args or method calls.
+	 * Tests invoking a class with defined args.
 	 *
 	 * @return void
 	 */
@@ -111,23 +112,151 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-    public function testAddArg()
-    {
-        $this->markTestIncomplete('This test has not yet been implemented.');
-    }
+	/**
+	 * Tests invoking a class with an integer as an args.
+	 *
+	 * @return void
+	 */
+	public function testInvokeWithIntegerAsArg()
+	{
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Corge');
 
+		$definition->addArg(1);
+
+		$instance = $definition();
+
+		$this->assertInstanceOf(
+			'League\\Di\\Stub\\Corge',
+			$instance,
+			'Invoking a Definition should return an instance of the class defined in the $class property.'
+		);
+
+		$this->assertAttributeEquals(
+			1,
+			'int',
+			$instance,
+			'Invoking a Definition with arguments assigned should pass those args to the method.'
+		);
+	}
+
+	/**
+	 * Tests invoking a class with a defined method call.
+	 *
+	 * @return void
+	 */
+	public function testInvokeWithMethodCall()
+	{
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Qux');
+
+		$definition->withMethod('setBar', array('League\\Di\\Stub\\Bar'));
+
+		$instance = $definition();
+
+		$this->assertInstanceOf(
+			'League\\Di\\Stub\\Qux',
+			$instance,
+			'Invoking a Definition should return an instance of the class defined in the $class property.'
+		);
+
+		$this->assertAttributeInstanceOf(
+			'League\\Di\\Stub\\Bar',
+			'bar',
+			$instance,
+			'Invoking a Definition with a defined method call pass the defined args to the method.'
+		);
+	}
+
+	/**
+	 * Tests adding an argument to a Defintion.
+	 *
+	 * @return void
+	 */
+	public function testAddArg()
+	{
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Foo');
+
+		$definition->addArg('foo');
+
+		$this->assertAttributeContains(
+			'foo',
+			'arguments',
+			$definition,
+			'An added argument should be added to the arguments array.'
+		);
+	}
+
+	/**
+	 * Tests adding an argument to a Defintion.
+	 *
+	 * @return void
+	 */
+	public function testAddIntegerArg()
+	{
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Foo');
+
+		$definition->addArg(1);
+
+		$args = $this->readAttribute($definition, 'arguments');
+
+		$this->assertEquals(
+			$args[0],
+			1,
+			'An added argument should be added to the arguments array, regardless of type'
+		);
+	}
+
+	/**
+	 * Tests adding multiple arguments to a Defintion.
+	 *
+	 * @return void
+	 */
     public function testAddArgs()
     {
-        $this->markTestIncomplete('This test has not yet been implemented.');
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Foo');
+
+		$definition->addArgs(array('foo', 'bar'));
+
+		$this->assertAttributeEquals(
+			array('foo', 'bar'),
+			'arguments',
+			$definition,
+			'Added arguments should be added to the arguments array.'
+		);
     }
 
     public function testWithMethod()
     {
-        $this->markTestIncomplete('This test has not yet been implemented.');
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Qux');
+
+		$definition->withMethod('setBar', array('League\\Di\\Stub\\Bar'));
+
+		$methods = $this->readAttribute($definition, 'methods');
+
+		$this->assertArrayHasKey(
+			'setBar',
+			$methods,
+			'Calling withMethod should set the defined method into the methods array.'
+		);
     }
 
     public function testCallMethod()
     {
-        $this->markTestIncomplete('This test has not yet been implemented.');
+		$definition = new Definition($this->container, 'League\\Di\\Stub\\Corge');
+
+		$definition->withMethod('setInt', array(1));
+
+		$reflection = new \ReflectionMethod($definition, 'callMethods');
+		$reflection->setAccessible(true);
+
+		$object = new Corge;
+
+		$objectWithMethodsCalled = $reflection->invoke($definition, $object);
+
+		$this->assertAttributeEquals(
+			1,
+			'int',
+			$objectWithMethodsCalled,
+			'Running callMethod on a given object should call the method and pass the args.'
+		);
     }
 }

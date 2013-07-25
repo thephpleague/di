@@ -15,4 +15,12 @@ namespace League\Di\Stub;
  *
  * @author  Don Gilbert <don@dongilbert.net>
  */
-class Qux {}
+class Qux
+{
+	public $bar;
+
+	public function setBar(BarInterface $bar)
+	{
+		$this->bar = $bar;
+	}
+}
