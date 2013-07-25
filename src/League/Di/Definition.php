@@ -34,7 +34,7 @@ class Definition
     /**
      * The holding container.
      *
-     * @var League\Di\Container
+     * @var Container
      */
     protected $container;
 
@@ -48,8 +48,8 @@ class Definition
     /**
      * Constructor
      *
-     * @param League\Di\Container $container
-     * @param string              $class
+     * @param Container $container
+     * @param string $class
      */
     public function __construct(Container $container, $class)
     {

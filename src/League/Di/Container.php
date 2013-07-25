@@ -75,7 +75,7 @@ class Container
     }
 
     /**
-     * Recursively build the dependcy list for the provided method.
+     * Recursively build the dependency list for the provided method.
      *
      * @param \ReflectionMethod $method The method for which to obtain dependencies.
      *
