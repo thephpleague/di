@@ -71,17 +71,37 @@ Alternatively, you can specify what to inject into the class upon instantiation.
 
 A great feature of League\Di is it's ability to provide child containers with a separate resolution scope to that of it's parent container. If you bind a concrete class to an interface within one container, you can re-bind it in the child container, without fear of overwriting the original binding in the parent container.
 
+#### Creating a Child Container
+
+There are two ways to create a child container.
+
     $child = $continer->createChild();
 
     // OR
 
     $child = new Container($container);
 
+#### Using a Child Container
+
+The primary benefit of using child containers is scope-specific resolution.
+
+    $container->bind('FooInterface', 'Foo');
+
+    // Assuming class Bar has a FooInterface dependency.
+    // This would use the Foo implementation.
+    $bar = $container->resolve('Bar');
+
+    // ...
+    $child = $container->createChild();
+    $child->bind('FooInterface', 'Baz');
+
+    // And this would use the Baz implementation.
+    $bar = $child->resolve('Bar');
+
 
 ## TODO
 
 - Extensive Documentation
-- More Framework Integration
 
 
 ## Contributing
