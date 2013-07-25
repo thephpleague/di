@@ -4,7 +4,7 @@
     "type"        : "library",
     "description" : "Fast Dependency Injection Container for PHP 5.3+",
     "keywords"    : ["dependency injection", "dic", "ioc"],
-    "homepage"    : "https://github.com/dongilbert/loep-di",
+    "homepage"    : "https://github.com/php-loep/di",
     "license"     : "MIT",
 
     "authors" : [{
@@ -16,8 +16,8 @@
 
     "support" : {
         "email"  : "don@dongilbert.net",
-        "issues" : "https://github.com/dongilbert/loep-di/issues",
-        "source" : "https://github.com/dongilbert/loep-di"
+        "issues" : "https://github.com/php-loep/di/issues",
+        "source" : "https://github.com/php-loep/di"
     },
 
     "require" : {
