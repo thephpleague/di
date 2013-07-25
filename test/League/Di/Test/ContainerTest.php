@@ -118,33 +118,33 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-	/**
-	 * Tests that a binding key has been bound.
-	 *
-	 * @return void
-	 */
-	public function testBound()
-	{
-		$this->container->bind('foo', 'League\\Di\\Stub\\Foo');
+    /**
+     * Tests that a binding key has been bound.
+     *
+     * @return void
+     */
+    public function testBound()
+    {
+        $this->container->bind('foo', 'League\\Di\\Stub\\Foo');
 
-		$this->assertTrue(
-			$this->container->bound('foo'),
-			'When checking a key that has been bound, this method should return true.'
-		);
-	}
+        $this->assertTrue(
+            $this->container->bound('foo'),
+            'When checking a key that has been bound, this method should return true.'
+        );
+    }
 
-	/**
-	 * Tests that a binding key has been bound.
-	 *
-	 * @return void
-	 */
-	public function testNotBound()
-	{
-		$this->assertFalse(
-			$this->container->bound('foo'),
-			'When checking a key that has not been bound, this method should return false.'
-		);
-	}
+    /**
+     * Tests that a binding key has been bound.
+     *
+     * @return void
+     */
+    public function testNotBound()
+    {
+        $this->assertFalse(
+            $this->container->bound('foo'),
+            'When checking a key that has not been bound, this method should return false.'
+        );
+    }
 
     /**
      * Tests getting the dependencies of a class method.

@@ -17,15 +17,15 @@ namespace League\Di\Stub;
  */
 class Corge
 {
-	public $int;
+    public $int;
 
-	public function __construct($int = null)
-	{
-		$this->int = $int;
-	}
+    public function __construct($int = null)
+    {
+        $this->int = $int;
+    }
 
-	public function setInt($int)
-	{
-		$this->int = $int;
-	}
+    public function setInt($int)
+    {
+        $this->int = $int;
+    }
 }

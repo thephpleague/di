@@ -49,7 +49,7 @@ class Definition
      * Constructor
      *
      * @param Container $container
-     * @param string $class
+     * @param string    $class
      */
     public function __construct(Container $container, $class)
     {

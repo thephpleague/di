@@ -17,10 +17,10 @@ namespace League\Di\Stub;
  */
 class Qux
 {
-	public $bar;
+    public $bar;
 
-	public function setBar(BarInterface $bar)
-	{
-		$this->bar = $bar;
-	}
+    public function setBar(BarInterface $bar)
+    {
+        $this->bar = $bar;
+    }
 }

@@ -48,15 +48,15 @@ class Container
         return $concrete;
     }
 
-	/**
-	 * Checks to see if a binding key has been bound.
-	 *
-	 * @param string $binding The binding to check.
-	 */
-	public function bound($binding)
-	{
-		return isset($this->bindings[$binding]);
-	}
+    /**
+     * Checks to see if a binding key has been bound.
+     *
+     * @param string $binding The binding to check.
+     */
+    public function bound($binding)
+    {
+        return isset($this->bindings[$binding]);
+    }
 
     /**
      * Build a concrete instance of a class.
