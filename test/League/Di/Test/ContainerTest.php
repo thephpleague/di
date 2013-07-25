@@ -333,7 +333,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(
             'League\\Di\\Stub\\Bar',
             $bindings,
-            'A class that has not yet been bound is bound prior to resolution.'
+            'A class that has not yet been bound should be bound prior to resolution.'
         );
     }
 }
