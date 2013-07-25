@@ -9,4 +9,9 @@
         <log type="coverage-html" target="build/coverage" title="League\Di" charset="UTF-8" yui="true" highlight="true"
             lowUpperBound="35" highLowerBound="70" />
     </logging>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
 </phpunit>
