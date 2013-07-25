@@ -25,6 +25,34 @@ class Container
     protected $bindings = array();
 
     /**
+     * The parent Container object.
+     *
+     * @var Container
+     */
+    protected $parent;
+
+    /**
+     * Constructor
+     *
+     * @param object $parent Container
+     */
+    public function __construct(Container $parent = null)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * Create a child Container with a new property scope that
+     * that has the ability to access the parent scope when resolving.
+     *
+     * @return Container
+     */
+    public function createChild()
+    {
+        return new static($this);
+    }
+
+    /**
      * Method to bind a concrete class to an abstract class or interface.
      *
      * @param string $abstract Class to bind.
@@ -49,13 +77,15 @@ class Container
     }
 
     /**
-     * Checks to see if a binding key has been bound.
+     * Checks to see if a binding key has been bound in current Container.
+     * If not bound in the current Container, it will recursively search
+     * parent Container's until it finds the $binding.
      *
      * @param string $binding The binding to check.
      */
     public function bound($binding)
     {
-        return isset($this->bindings[$binding]);
+        return isset($this->bindings[$binding]) || (isset($this->parent) && $this->parent->bound($binding));
     }
 
     /**
@@ -115,6 +145,24 @@ class Container
     }
 
     /**
+     * Get the raw object prior to resolution.
+     *
+     * @param string $binding The $binding key to get the raw value from.
+     *
+     * @return mixed Value of the $binding.
+     */
+    public function getRaw($binding)
+    {
+        if (isset($this->bindings[$binding])) {
+            return $this->bindings[$binding];
+        } elseif (isset($this->parent)) {
+            return $this->parent->getRaw($binding);
+        }
+
+        return null;
+    }
+
+    /**
      * Resolve the given binding.
      *
      * @param string $binding The binding to resolve.
@@ -123,11 +171,16 @@ class Container
      */
     public function resolve($binding)
     {
+        $rawObject = $this->getRaw($binding);
+
         // If the abstract is not registered, do it now for easy resolution.
-        if (! isset($this->bindings[$binding])) {
+        if ($rawObject === null) {
+            // Pass $binding to both so it doesn't need to check if null again.
             $this->bind($binding, $binding);
+
+			$rawObject = $this->getRaw($binding);
         }
 
-        return $this->bindings[$binding]($this);
+        return $rawObject($this);
     }
 }

@@ -67,6 +67,16 @@ Alternatively, you can specify what to inject into the class upon instantiation.
 
     $container->resolve('\Foo\Bar\Baz');
 
+### Child Containers and Scope Resolution
+
+A great feature of League\Di is it's ability to provide child containers with a separate resolution scope to that of it's parent container. If you bind a concrete class to an interface within one container, you can re-bind it in the child container, without fear of overwriting the original binding in the parent container.
+
+    $child = $continer->createChild();
+
+    // OR
+
+    $child = new Container($container);
+
 
 ## TODO
 
