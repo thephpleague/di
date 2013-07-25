@@ -1,5 +1,7 @@
 # League\Di
 
+[![Code Coverage](https://scrutinizer-ci.com/g/dongilbert/loep-di/badges/coverage.png?s=88b3ad00b1587ebd918eb8ff137a22130af95f0e)](https://scrutinizer-ci.com/g/dongilbert/loep-di/)
+
 The League\Di library provides a fast and powerful Dependency Injection Container for your application.
 
 ## Install
