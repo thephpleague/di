@@ -1,6 +1,8 @@
 # League\Di
 
-[![Code Coverage](https://scrutinizer-ci.com/g/dongilbert/loep-di/badges/coverage.png?s=88b3ad00b1587ebd918eb8ff137a22130af95f0e)](https://scrutinizer-ci.com/g/dongilbert/loep-di/)
+[![Build Status](https://travis-ci.org/php-loep/di.png?branch=master)](https://travis-ci.org/php-loep/di)
+[![Total Downloads](https://poser.pugx.org/league/di/downloads.png)](https://packagist.org/packages/league/di)
+[![Latest Stable Version](https://poser.pugx.org/league/di/v/stable.png)](https://packagist.org/packages/league/di)
 
 The League\Di library provides a fast and powerful Dependency Injection Container for your application.
 
