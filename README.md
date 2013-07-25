@@ -12,7 +12,7 @@ Via Composer
 
     {
         "require": {
-            "league/di": ">=0.1"
+            "league/di": "1.*"
         }
     }
 
