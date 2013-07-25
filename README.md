@@ -66,7 +66,6 @@ Alternatively, you can specify what to inject into the class upon instantiation.
 
 ## TODO
 
-- Full Unit Test Coverage
 - Extensive Documentation
 - More Framework Integration
 
