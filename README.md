@@ -83,6 +83,7 @@ Please see [CONTRIBUTING](https://github.com/php-loep/di/blob/master/CONTRIBUTIN
 
 - [Don Gilbert](https://github.com/dongilbert)
 - [All Contributors](https://github.com/php-loep/di/contributors)
+- [Phil Bennett](https://twitter.com/philipobenito) / [Orno](http://getorno.com/)
 
 
 ## License
