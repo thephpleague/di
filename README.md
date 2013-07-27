@@ -1,6 +1,7 @@
 # League\Di
 
 [![Build Status](https://travis-ci.org/php-loep/di.png?branch=master)](https://travis-ci.org/php-loep/di)
+[![Dependencies Status](https://d2xishtp1ojlk0.cloudfront.net/d/11641448)](http://depending.in/php-loep/di)
 [![Total Downloads](https://poser.pugx.org/league/di/downloads.png)](https://packagist.org/packages/league/di)
 [![Latest Stable Version](https://poser.pugx.org/league/di/v/stable.png)](https://packagist.org/packages/league/di)
 
