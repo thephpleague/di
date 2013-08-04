@@ -186,6 +186,49 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tests extending an existing binding.
+     *
+     * @return void
+     */
+    public function testExtend()
+    {
+        $reflection = new \ReflectionProperty($this->container, 'bindings');
+        $reflection->setAccessible(true);
+
+        $reflection->setValue($this->container, array('foo' => function () { return 'bar'; }));
+
+        $this->container->extend('foo', function ($container, $instance) {
+            return $instance . ' has been extended';
+        });
+
+        $bindings = $this->readAttribute($this->container, 'bindings');
+
+        $this->assertArrayHasKey(
+            'foo',
+            $bindings,
+            'An extended binding should have the same binding key as the original.'
+        );
+
+        $this->assertEquals(
+            'bar has been extended',
+            $this->container->resolve('foo'),
+            'An extended binding should take the results of the original and pass them to the extended version.'
+        );
+    }
+
+    /**
+     * Tests that extending a non-existant binding throws an exception.
+     *
+     * @return void
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testExtendNotYetBound()
+    {
+        $this->container->extend('foo', function () { return 'bar'; });
+    }
+
+    /**
      * Tests getting the dependencies of a class method.
      *
      * @return void

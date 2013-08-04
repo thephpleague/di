@@ -115,6 +115,27 @@ class Container
     }
 
     /**
+     * Extend an existing binding.
+     *
+     * @param   string   $binding  The name of the binding to extend.
+     * @param   Closure  $closure  The function to use to extend the existing binding.
+     *
+     * @return  void
+     */
+    public function extend($binding, \Closure $closure)
+    {
+        $rawObject = $this->getRaw($binding);
+
+        if (is_null($rawObject)) {
+            throw new \InvalidArgumentException(sprintf('Cannot extend %s because it has not yet been bound.', $binding));
+        }
+
+        $this->bind($binding, function ($container) use ($closure, $rawObject) {
+            return $closure($container, $rawObject($container));
+        });
+    }
+
+    /**
      * Recursively build the dependency list for the provided method.
      *
      * @param \ReflectionMethod $method The method for which to obtain dependencies.
@@ -174,7 +195,7 @@ class Container
         $rawObject = $this->getRaw($binding);
 
         // If the abstract is not registered, do it now for easy resolution.
-        if ($rawObject === null) {
+        if (is_null($rawObject)) {
             // Pass $binding to both so it doesn't need to check if null again.
             $this->bind($binding, $binding);
 
