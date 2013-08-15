@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace League\Di;
+namespace League\Di\Container;
 
 /**
  * Container class
@@ -20,7 +20,7 @@ class ContainerAwareInterface
     /**
      * Get the DI container.
      *
-     * @return  Di\Container
+     * @return  Container
      *
      * @since   __DEPLOY_VERSION__
      * @throws  \UnexpectedValueException May be thrown if the container has not been set.
@@ -30,11 +30,11 @@ class ContainerAwareInterface
     /**
      * Set the DI container.
      *
-     * @param   Di\Container  $container  The DI container.
+     * @param   Container  $container  The DI container.
      *
      * @return  Controller  Returns itself to support chaining.
      *
      * @since   __DEPLOY_VERSION__
      */
-	public function setContainer(Di\Container $container);
+	public function setContainer(Container $container);
 }
