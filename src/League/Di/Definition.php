@@ -154,7 +154,7 @@ class Definition
      *
      * @param object $object The instatiated $class on which to call the methods.
      *
-     * @return The created object
+     * @return mixed The created object
      */
     protected function callMethods($object)
     {

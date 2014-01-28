@@ -34,7 +34,7 @@ class Container
     /**
      * Constructor
      *
-     * @param object $parent Container
+     * @param Container $parent Container
      */
     public function __construct(Container $parent = null)
     {
@@ -55,11 +55,10 @@ class Container
     /**
      * Method to bind a concrete class to an abstract class or interface.
      *
-     * @param string $abstract Class to bind.
-     * @param mixed  $concrete Concrete definition to bind to $abstract.
-     *                             Can be a \Closure or a string.
+     * @param string          $abstract Class to bind.
+     * @param \Closure|string $concrete Concrete definition to bind to $abstract.
      *
-     * @return mixed The concrete class for adding method calls / constructor arguments if desired.
+     * @return Definition|\Closure The concrete class for adding method calls / constructor arguments if desired.
      */
     public function bind($abstract, $concrete = null)
     {
@@ -82,6 +81,7 @@ class Container
      * parent Container's until it finds the $binding.
      *
      * @param string $binding The binding to check.
+     * @return bool
      */
     public function bound($binding)
     {
@@ -94,6 +94,7 @@ class Container
      * @param string $concrete The name of the class to buld.
      *
      * @return mixed The instantiated class.
+     * @throws  \InvalidArgumentException
      */
     public function build($concrete)
     {
@@ -118,9 +119,10 @@ class Container
      * Extend an existing binding.
      *
      * @param   string   $binding  The name of the binding to extend.
-     * @param   Closure  $closure  The function to use to extend the existing binding.
+     * @param   \Closure $closure  The function to use to extend the existing binding.
      *
      * @return  void
+     * @throws  \InvalidArgumentException
      */
     public function extend($binding, \Closure $closure)
     {
@@ -141,6 +143,7 @@ class Container
      * @param \ReflectionMethod $method The method for which to obtain dependencies.
      *
      * @return array An array containing the method dependencies.
+     * @throws \InvalidArgumentException
      */
     protected function getDependencies(\ReflectionMethod $method)
     {
@@ -170,7 +173,7 @@ class Container
      *
      * @param string $binding The $binding key to get the raw value from.
      *
-     * @return mixed Value of the $binding.
+     * @return Definition|\Closure Value of the $binding.
      */
     public function getRaw($binding)
     {
