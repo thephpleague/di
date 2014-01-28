@@ -123,6 +123,18 @@ class Definition
     }
 
     /**
+     * Remove all available arguments
+     *
+     * @return Definition
+     */
+    public function cleanArgs()
+    {
+        $this->arguments = array();
+
+        return $this;
+    }
+
+    /**
      * Adds a method call to be executed after instantiating.
      *
      * @param string $method The method name to call.
