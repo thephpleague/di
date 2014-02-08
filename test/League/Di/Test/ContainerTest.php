@@ -197,9 +197,12 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
 
         $reflection->setValue($this->container, array('foo' => function () { return 'bar'; }));
 
-        $this->container->extend('foo', function ($container, $instance) {
-            return $instance . ' has been extended';
-        });
+        $this->container->extend(
+            'foo',
+            function ($container, $instance) {
+                return $instance . ' has been extended';
+            }
+        );
 
         $bindings = $this->readAttribute($this->container, 'bindings');
 
@@ -225,7 +228,12 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtendNotYetBound()
     {
-        $this->container->extend('foo', function () { return 'bar'; });
+        $this->container->extend(
+            'foo',
+            function () {
+                return 'bar';
+            }
+        );
     }
 
     /**
@@ -320,61 +328,71 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $reflection->invoke($this->container, $method);
     }
 
-	/**
-	 * Tests getting the raw data for a binding.
-	 *
-	 * @return void
-	 */
-	public function testGetRaw()
-	{
-		$reflection = new \ReflectionProperty($this->container, 'bindings');
-		$reflection->setAccessible(true);
+    /**
+     * Tests getting the raw data for a binding.
+     *
+     * @return void
+     */
+    public function testGetRaw()
+    {
+        $reflection = new \ReflectionProperty($this->container, 'bindings');
+        $reflection->setAccessible(true);
 
-		$reflection->setValue($this->container, array('foo' => function () {
-			return 'bar';
-		}));
+        $reflection->setValue(
+            $this->container,
+            array(
+                'foo' => function () {
+                    return 'bar';
+                }
+            )
+        );
 
-		$raw = $this->container->getRaw('foo');
+        $raw = $this->container->getRaw('foo');
 
-		$this->assertInstanceOf(
-			'Closure',
-			$raw,
-			'The raw value should be returned, un-executed, when using getRaw.'
-		);
-	}
+        $this->assertInstanceOf(
+            'Closure',
+            $raw,
+            'The raw value should be returned, un-executed, when using getRaw.'
+        );
+    }
 
-	/**
-	 * Tests getting the raw data for a binding.
-	 *
-	 * @return void
-	 */
-	public function testGetRawFromParent()
-	{
-		$reflection = new \ReflectionProperty($this->container, 'bindings');
-		$reflection->setAccessible(true);
+    /**
+     * Tests getting the raw data for a binding.
+     *
+     * @return void
+     */
+    public function testGetRawFromParent()
+    {
+        $reflection = new \ReflectionProperty($this->container, 'bindings');
+        $reflection->setAccessible(true);
 
-		$reflection->setValue($this->container, array('foo' => function () {
-			return 'bar';
-		}));
+        $reflection->setValue(
+            $this->container,
+            array(
+                'foo' => function () {
+                    return 'bar';
+                }
+            )
+        );
 
-		$child = new Container($this->container);
+        $child = new Container($this->container);
 
-		$raw = $child->getRaw('foo');
+        $raw = $child->getRaw('foo');
 
-		$this->assertInstanceOf(
-			'Closure',
-			$raw,
-			'The getRaw method should recursively check parent containers.'
-		);
+        $this->assertInstanceOf(
+            'Closure',
+            $raw,
+            'The getRaw method should recursively check parent containers.'
+        );
 
-		$bindings = $this->readAttribute($child, 'bindings');
+        $bindings = $this->readAttribute($child, 'bindings');
 
-		$this->assertArrayNotHasKey(
-			'foo',
-			$bindings,
-			'Ensure that the $bindings array of the child Container does not contain the binding key.'
-		);
-	}
+        $this->assertArrayNotHasKey(
+            'foo',
+            $bindings,
+            'Ensure that the $bindings array of the child Container does not contain the binding key.'
+        );
+    }
 
     /**
      * Tests building a class that has no dependencies.
@@ -479,60 +497,65 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-	/**
-	 * Tests resolving a class which has not been bound in the container.
-	 *
-	 * @return void
-	 */
-	public function testResolveNotBound()
-	{
-		$bar = $this->container->resolve('League\\Di\\Stub\\Bar');
+    /**
+     * Tests resolving a class which has not been bound in the container.
+     *
+     * @return void
+     */
+    public function testResolveNotBound()
+    {
+        $bar = $this->container->resolve('League\\Di\\Stub\\Bar');
 
-		$this->assertInstanceOf(
-			'League\\Di\\Stub\\Bar',
-			$bar,
-			'A class that has not been bound should still resolve to an instance of the requested class.'
-		);
+        $this->assertInstanceOf(
+            'League\\Di\\Stub\\Bar',
+            $bar,
+            'A class that has not been bound should still resolve to an instance of the requested class.'
+        );
 
-		$bindings = $this->readAttribute($this->container, 'bindings');
+        $bindings = $this->readAttribute($this->container, 'bindings');
 
-		$this->assertArrayHasKey(
-			'League\\Di\\Stub\\Bar',
-			$bindings,
-			'A class that has not yet been bound should be bound prior to resolution.'
-		);
-	}
+        $this->assertArrayHasKey(
+            'League\\Di\\Stub\\Bar',
+            $bindings,
+            'A class that has not yet been bound should be bound prior to resolution.'
+        );
+    }
 
-	/**
-	 * Tests resolving a class which has not been bound in the container.
-	 *
-	 * @return void
-	 */
-	public function testResolveFromParent()
-	{
-		$reflection = new \ReflectionProperty($this->container, 'bindings');
-		$reflection->setAccessible(true);
+    /**
+     * Tests resolving a class which has not been bound in the container.
+     *
+     * @return void
+     */
+    public function testResolveFromParent()
+    {
+        $reflection = new \ReflectionProperty($this->container, 'bindings');
+        $reflection->setAccessible(true);
 
-		$reflection->setValue($this->container, array('foo' => function () {
-			return 'bar';
-		}));
+        $reflection->setValue(
+            $this->container,
+            array(
+                'foo' => function () {
+                    return 'bar';
+                }
+            )
+        );
 
-		$child = new Container($this->container);
+        $child = new Container($this->container);
 
-		$foo = $child->resolve('foo');
+        $foo = $child->resolve('foo');
 
-		$this->assertEquals(
-			'bar',
-			$foo,
-			'Resolving should recursively look for a binding in the parent Container until found.'
-		);
+        $this->assertEquals(
+            'bar',
+            $foo,
+            'Resolving should recursively look for a binding in the parent Container until found.'
+        );
 
-		$bindings = $this->readAttribute($child, 'bindings');
+        $bindings = $this->readAttribute($child, 'bindings');
 
-		$this->assertArrayNotHasKey(
-			'foo',
-			$bindings,
-			'Ensure that the $bindings array of the child Container does not contain the binding key.'
-		);
-	}
+        $this->assertArrayNotHasKey(
+            'foo',
+            $bindings,
+            'Ensure that the $bindings array of the child Container does not contain the binding key.'
+        );
+    }
 }

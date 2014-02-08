@@ -130,9 +130,12 @@ class Container
             throw new \InvalidArgumentException(sprintf('Cannot extend %s because it has not yet been bound.', $binding));
         }
 
-        $this->bind($binding, function ($container) use ($closure, $rawObject) {
-            return $closure($container, $rawObject($container));
-        });
+        $this->bind(
+            $binding,
+            function ($container) use ($closure, $rawObject) {
+                return $closure($container, $rawObject($container));
+            }
+        );
     }
 
     /**
@@ -199,7 +202,7 @@ class Container
             // Pass $binding to both so it doesn't need to check if null again.
             $this->bind($binding, $binding);
 
-			$rawObject = $this->getRaw($binding);
+            $rawObject = $this->getRaw($binding);
         }
 
         return $rawObject($this);
