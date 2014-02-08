@@ -67,14 +67,8 @@ class Definition
     public function __invoke()
     {
         if (empty($this->arguments)) {
-            if (empty($this->methods)) {
-                $object = $this->container->build($this->class);
-            } else {
-                $object = new $this->class;
-            }
+            $object = $this->container->build($this->class);
         } else {
-            $reflection = new \ReflectionClass($this->class);
-
             $arguments = array();
 
             foreach ($this->arguments as $arg) {
@@ -85,6 +79,8 @@ class Definition
 
                 $arguments[] = $arg;
             }
+
+            $reflection = new \ReflectionClass($this->class);
 
             $object = $reflection->newInstanceArgs($arguments);
         }
