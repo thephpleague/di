@@ -17,7 +17,7 @@ use League\Di\Stub\Corge;
 /**
  * Definition Test class
  *
- * @author  Don Gilbert <don@dongilbert.net>
+ * @author Don Gilbert <don@dongilbert.net>
  */
 class DefinitionTest extends \PHPUnit_Framework_TestCase
 {
@@ -167,7 +167,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests adding an argument to a Defintion.
+     * Tests adding an argument to a Definition.
      *
      * @return void
      */
@@ -186,7 +186,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests adding an argument to a Defintion.
+     * Tests adding multiple arguments to a Definition.
      *
      * @return void
      */
@@ -206,7 +206,7 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests adding multiple arguments to a Defintion.
+     * Tests adding multiple arguments to a Definition.
      *
      * @return void
      */
@@ -224,6 +224,11 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Tests adding a method to call to a Definition.
+     *
+     * @return void
+     */
     public function testWithMethod()
     {
         $definition = new Definition($this->container, 'League\\Di\\Stub\\Qux');
@@ -239,6 +244,11 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Tests the effective call of methods added to a Definition.
+     *
+     * @return void
+     */
     public function testCallMethod()
     {
         $definition = new Definition($this->container, 'League\\Di\\Stub\\Corge');

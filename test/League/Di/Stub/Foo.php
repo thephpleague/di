@@ -13,7 +13,7 @@ namespace League\Di\Stub;
 /**
  * Foo Stub Test class
  *
- * @author  Don Gilbert <don@dongilbert.net>
+ * @author Don Gilbert <don@dongilbert.net>
  */
 class Foo
 {

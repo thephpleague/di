@@ -15,7 +15,7 @@ use League\Di\Container;
 /**
  * Container Test class
  *
- * @author  Don Gilbert <don@dongilbert.net>
+ * @author Don Gilbert <don@dongilbert.net>
  */
 class ContainerTest extends \PHPUnit_Framework_TestCase
 {

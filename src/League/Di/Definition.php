@@ -13,7 +13,7 @@ namespace League\Di;
 /**
  * Definition class
  *
- * @author  Don Gilbert <don@dongilbert.net>
+ * @author Don Gilbert <don@dongilbert.net>
  */
 class Definition
 {
@@ -48,8 +48,8 @@ class Definition
     /**
      * Constructor
      *
-     * @param Container $container
-     * @param string    $class
+     * @param Container $container Holding container
+     * @param string    $class     Class name for this Definition
      */
     public function __construct(Container $container, $class)
     {
@@ -109,7 +109,7 @@ class Definition
     /**
      * Add multiple arguments to the class's constructor.
      *
-     * @param array $arg An array of arguments.
+     * @param array $args An array of arguments.
      *
      * @return Definition
      */
@@ -140,9 +140,9 @@ class Definition
     /**
      * Execute the methods added via call()
      *
-     * @param object $object The instatiated $class on which to call the methods.
+     * @param object $object The instantiated $class on which to call the methods.
      *
-     * @return The created object
+     * @return mixed The created object
      */
     protected function callMethods($object)
     {

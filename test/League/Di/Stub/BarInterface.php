@@ -13,6 +13,6 @@ namespace League\Di\Stub;
 /**
  * BarInterface Stub Test interface
  *
- * @author  Don Gilbert <don@dongilbert.net>
+ * @author Don Gilbert <don@dongilbert.net>
  */
 interface BarInterface {}
