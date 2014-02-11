@@ -46,6 +46,20 @@ class Definition
     protected $methods = array();
 
     /**
+     * To share instance or not
+     *
+     * @var bool
+     */
+    protected $shared = false;
+
+    /**
+     * Created instance
+     *
+     * @var object
+     */
+    protected $instance;
+
+    /**
      * Constructor
      *
      * @param Container $container
@@ -66,6 +80,10 @@ class Definition
      */
     public function __invoke()
     {
+        if ($this->shared && $this->instance) {
+            return $this->instance;
+        }
+
         if (empty($this->arguments)) {
             if (empty($this->methods)) {
                 $object = $this->container->build($this->class);
@@ -89,7 +107,7 @@ class Definition
             $object = $reflection->newInstanceArgs($arguments);
         }
 
-        return $this->callMethods($object);
+        return $this->instance = $this->callMethods($object);
     }
 
     /**
@@ -166,5 +184,17 @@ class Definition
         }
 
         return $object;
+    }
+
+    /**
+     * Set instance to be shared
+     *
+     * @return Definition
+     */
+    public function share()
+    {
+        $this->shared = true;
+
+        return $this;
     }
 }

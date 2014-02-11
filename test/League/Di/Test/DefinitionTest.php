@@ -259,4 +259,39 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
             'Running callMethod on a given object should call the method and pass the args.'
         );
     }
+
+    /**
+     * Tests invoking shared instance.
+     *
+     * @return void
+     */
+    public function testShare()
+    {
+        $definition = new Definition($this->container, 'League\\Di\\Stub\\Corge');
+
+        $definition->share();
+
+        $instance1 = $definition();
+        $instance2 = $definition();
+
+        $this->assertSame(
+            $instance1,
+            $instance2,
+            'Definition with shared should return the exact same instance of the class.'
+        );
+    }
+
+    public function testShareNotShared()
+    {
+        $definition = new Definition($this->container, 'League\\Di\\Stub\\Corge');
+
+        $instance1 = $definition();
+        $instance2 = $definition();
+
+        $this->assertNotSame(
+            $instance1,
+            $instance2,
+            'Definition without shared should return another instance of the class.'
+        );
+    }
 }
