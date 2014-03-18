@@ -224,6 +224,27 @@ class DefinitionTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * Tests removing arguments from a Defintion.
+     *
+     * @return void
+     */
+    public function testCleanArgs()
+    {
+        $definition = new Definition($this->container, 'League\\Di\\Stub\\Foo');
+
+        $definition->addArgs(array('foo', 'bar'));
+
+        $definition->cleanArgs();
+
+        $this->assertAttributeEquals(
+            array(),
+            'arguments',
+            $definition,
+            'All arguments should be removed from the arguments array.'
+        );
+    }
+
     public function testWithMethod()
     {
         $definition = new Definition($this->container, 'League\\Di\\Stub\\Qux');
