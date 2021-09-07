@@ -6,7 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/league/di/downloads.png)](https://packagist.org/packages/league/di)
 [![Latest Stable Version](https://poser.pugx.org/league/di/v/stable.png)](https://packagist.org/packages/league/di)
 
-_**DEPRECATED: Use [Orno\Di](https://github.com/orno/di) instead as the two are incredibly similar, and theirs is more actively developed.**_
+_**DEPRECATED: Use [Orno\Di](https://github.com/paulosborne/di) instead as the two are incredibly similar, and theirs is more actively developed.**_
 
 The League\Di library provides a fast and powerful Dependency Injection Container for your application.
 
